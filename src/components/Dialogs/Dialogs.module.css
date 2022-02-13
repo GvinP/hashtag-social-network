@@ -3,21 +3,3 @@
     grid-template-columns: 2fr 8fr;
     padding: 10px;
 }
-
-.dialogsList {
-
-}
-
-.dialogsItem {
-    margin-top: 5px;
-}
-.dialogsItem img {
-    width: 40px;
-}
-.messagesList {
-
-}
-
-.messagesItem {
-    margin-top: 5px;
-}
