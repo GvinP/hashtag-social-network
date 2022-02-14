@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 import Post from "./MyPosts/Post/Post";
 
 type profileProps = {
-    posts: any
+    posts: object
 }
 
 const Profile = (props: profileProps) => {

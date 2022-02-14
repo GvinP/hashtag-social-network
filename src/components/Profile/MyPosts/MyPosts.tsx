@@ -7,8 +7,8 @@ type myPosptsProps = {
 }
 
 function MyPosts(props: myPosptsProps) {
-    let pos = [...props.posts]
-    let posts = pos.map((p) => <Post message={p.message}/>)
+    let post = [...props.posts.postsData];
+    let posts = post.map((p) => <Post message={p.message}/>)
     return (
         <div className={myposts.content}>
             <div>

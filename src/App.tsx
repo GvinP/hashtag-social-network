@@ -11,9 +11,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
 type appProps = {
-    messages: object,
-    dialogs: object,
-    posts: any
+    state: any
 }
 const App = (props: appProps) => {
     return (
@@ -23,8 +21,8 @@ const App = (props: appProps) => {
             <Navigation/>
             <div className="app-wrapper-content">
                 <Routes>
-                    <Route path="/Profile" element={<Profile posts={props.posts}/>}/>
-                    <Route path="/Dialogs/*" element={<Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+                    <Route path="/Profile" element={<Profile posts={props.state.postPage}/>}/>
+                    <Route path="/Dialogs/*" element={<Dialogs dialogs={props.state.dialogPage}/>}/>
                     <Route path="/News" element={<News/>}/>
                     <Route path="/Music" element={<Music/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
