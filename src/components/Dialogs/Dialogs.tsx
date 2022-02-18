@@ -2,16 +2,13 @@ import React from "react";
 import DialogItem from "./DialogItem/DialogItem";
 import s from "./Dialogs.module.css";
 import Message from "./DialogItem/Messagge/Message";
-import {dialogData, messageData, updateMessage} from "../../redux/state";
+import {dialogPage} from "../../redux/state";
+
 
 type dialogsProps = {
-    dialogs: {
-        dialogData: Array<dialogData>,
-        messageData: Array<messageData>,
-        newMessage: string
-    }
-    addMessage: any,
-    updateMessage: any
+    dialogs: dialogPage,
+    addMessage(messageContent: string): void,
+    updateMessage(newText: string): void
 }
 
 const Dialogs = (props: dialogsProps) => {
