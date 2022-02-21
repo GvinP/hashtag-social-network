@@ -13,10 +13,7 @@ import {_state} from "./redux/state";
 
 type appProps = {
     state: _state,
-    addPost(postContent: string): void,
-    updatePost(newText: string): void,
-    updateMessage(newText: string): void,
-    addMessage(messageContent: string): void
+    dispatch(action: any): void
 }
 
 const App = (props: appProps) => {
@@ -27,8 +24,8 @@ const App = (props: appProps) => {
                 <Navigation/>
                 <div className="app-wrapper-content">
                     <Routes>
-                        <Route path="/Profile" element={<Profile posts={props.state.postPage} addPost={props.addPost} updatePost={props.updatePost}/>}/>
-                        <Route path="/Dialogs/*" element={<Dialogs dialogs={props.state.dialogPage} addMessage={props.addMessage} updateMessage={props.updateMessage}/>}/>
+                        <Route path="/Profile" element={<Profile posts={props.state.postPage} dispatch={props.dispatch} />}/>
+                        <Route path="/Dialogs/*" element={<Dialogs dialogs={props.state.dialogPage} dispatch={props.dispatch}/>}/>
                         <Route path="/News" element={<News/>}/>
                         <Route path="/Music" element={<Music/>}/>
                         <Route path="/Settings" element={<Settings/>}/>

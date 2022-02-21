@@ -1,3 +1,4 @@
+
 export type dialogData = {
     name: string, id: number
 }
@@ -24,70 +25,71 @@ export type storeType = {
     _state: _state,
     _callSubscriber(): void,
     getState(): void,
-    addPost(postContent: string): void,
-    updatePost(newText: string): void,
-    updateMessage(newText: string): void,
-    addMessage(messageContent: string): void,
-    subscriber(observer: any): void
+    subscriber(observer: any): void,
+    dispatch(action: any): void
 }
-
-export let store: storeType = {
-    _state: {
-        dialogPage: {
-            dialogData: [
-                {name: "First User", id: 1},
-                {name: "Second User", id: 2},
-                {name: "Third User", id: 3}
-            ],
-            messageData: [
-                {message: "First Message", id: 1},
-                {message: "Second Message", id: 2},
-                {message: "Third Message", id: 3}
-            ],
-            newMessage: ""
-        },
-        postPage: {
-            postsData: [
-                {message: "First Post", likes: 11},
-                {message: "Second Post", likes: 22},
-                {message: "Third Post", likes: 33}
-            ],
-            newPost: ""
-        },
-    },
-    getState() {
-        return this._state;
-    },
-    _callSubscriber() {
-        console.log("state changed");
-    },
-    subscriber(observer: any) {
-        this._callSubscriber = observer;
-    },
-    addPost(postContent: string) {
-        let newPost = {
-            message: postContent,
-            likes: 0
-        }
-        this._state.postPage.postsData.push(newPost)
-        this._callSubscriber()
-        this._state.postPage.newPost = ''
-    },
-    updatePost(newText: string) {
-        this._state.postPage.newPost = newText;
-        this._callSubscriber()
-    },
-    updateMessage(newText: string) {
-        this._state.dialogPage.newMessage = newText;
-        this._callSubscriber()
-    },
-    addMessage(messageContent: string) {
-        let newMessage = {
-            message: messageContent,
-            id: 4
-        }
-        this._state.dialogPage.messageData.push(newMessage)
-        this._callSubscriber()
-        this._state.dialogPage.newMessage = ''
+const addPost = "ADD-POST"
+const updatePost = "UPDATE-POST"
+const addMessage = "ADD-MESSAGE"
+const updateMessage = "UPDATE-MESSAGE"
+// export let store: storeType = {
+//     _state: {
+//         dialogPage: {
+//             dialogData: [
+//                 {name: "First User", id: 1},
+//                 {name: "Second User", id: 2},
+//                 {name: "Third User", id: 3}
+//             ],
+//             messageData: [
+//                 {message: "First Message", id: 1},
+//                 {message: "Second Message", id: 2},
+//                 {message: "Third Message", id: 3}
+//             ],
+//             newMessage: ""
+//         },
+//         postPage: {
+//             postsData: [
+//                 {message: "First Post", likes: 11},
+//                 {message: "Second Post", likes: 22},
+//                 {message: "Third Post", likes: 33}
+//             ],
+//             newPost: ""
+//         },
+//     },
+//     getState() {
+//         return this._state;
+//     },
+//     _callSubscriber() {
+//         console.log("state changed");
+//     },
+//     subscriber(observer) {
+//         this._callSubscriber = observer;
+//     },
+//     dispatch(action) {
+//         profileReducer(this._state.postPage, action);
+//         dialogReducer(this._state.dialogPage, action);
+//         this._callSubscriber();
+//     }
+// }
+export const addPostActionCreator = () => {
+    return {
+        type: addPost
+    }
+}
+export const updatePostActionCreator = (text: string) => {
+    return {
+        type: updatePost,
+        text: text
+    }
+}
+export const addMessageActionCreator = () => {
+    return {
+        type: addMessage
+    }
+}
+export const updateMessageActionCreator = (text: string) => {
+    return {
+        type: updateMessage,
+        text: text
     }
 }

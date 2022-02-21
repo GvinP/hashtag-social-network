@@ -5,8 +5,7 @@ import {postPage} from "../../redux/state";
 
 type profileProps = {
     posts: postPage,
-    addPost(postContent: string): void,
-    updatePost(newText: string): void
+    dispatch(action: any): void
 }
 
 const Profile = (props: profileProps) => {
@@ -16,7 +15,7 @@ const Profile = (props: profileProps) => {
                 <img width={60} src='https://mobimg.b-cdn.net/v3/fetch/16/162162e62dd1166239149cae60f30252.jpeg' alt="avatar"/>
                 <p>My name</p>
             </div>
-            <MyPosts posts={props.posts} addPost={props.addPost} updatePost={props.updatePost}/>
+            <MyPosts posts={props.posts} dispatch={props.dispatch}/>
         </div>
     );
 }

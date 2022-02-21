@@ -1,30 +1,28 @@
 import React from "react";
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post";
-import {postPage} from "../../../redux/state";
+import {addPostActionCreator, postPage, updatePostActionCreator} from "../../../redux/state";
 
 type myPostsProps = {
     posts: postPage
-    addPost: any,
-    updatePost: any
+    dispatch(action: any): void
 }
 
 function MyPosts(props: myPostsProps) {
-    let newPostElement: any = React.createRef();
     let newPost = () => {
-        let text = newPostElement.current.value
-        props.addPost(text)
-        newPostElement.current.value = ''
+        let action = addPostActionCreator()
+        props.dispatch(action)
     }
-    let onPostChange = () => {
-        let text = newPostElement.current.value
-        props.updatePost(text)
+    let onPostChange = (event: any) => {
+        let text = event.target.value
+        let action = updatePostActionCreator(text)
+        props.dispatch(action)
     }
     let posts = props.posts.postsData.map((p) => <Post message={p.message}/>)
     return (
         <div className={s.content}>
             <div>
-                <textarea onChange={onPostChange} ref={newPostElement} value={props.posts.newPost}></textarea>
+                <textarea onChange={onPostChange} value={props.posts.newPost}></textarea>
                 <button onClick={newPost}>Add post</button>
             </div>
             {posts}
