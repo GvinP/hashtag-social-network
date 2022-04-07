@@ -1,4 +1,3 @@
-
 export type dialogData = {
     name: string, id: number
 }
@@ -15,7 +14,7 @@ export type dialogPage = {
 }
 export type postPage = {
     postsData: Array<postsData>,
-    newPost: any
+    newPost: string
 }
 export type _state = {
     dialogPage: dialogPage,
@@ -23,10 +22,14 @@ export type _state = {
 }
 export type storeType = {
     _state: _state,
-    _callSubscriber(): void,
-    getState(): void,
-    subscriber(observer: any): void,
-    dispatch(action: any): void
+    _callSubscriber: () => void,
+    getState: () => void,
+    subscriber: (observer: number) => void,
+    dispatch: (action: number) => void
+}
+export type actionType = {
+    type: string
+    text: string
 }
 const addPost = "ADD-POST"
 const updatePost = "UPDATE-POST"

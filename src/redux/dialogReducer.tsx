@@ -1,4 +1,4 @@
-import {dialogPage} from "./state";
+import {actionType, dialogPage} from "./state";
 
 const addMessage = "ADD-MESSAGE"
 const updateMessage = "UPDATE-MESSAGE"
@@ -17,7 +17,7 @@ const initialStore: dialogPage = {
     newMessage: ""
 }
 
-const dialogReducer = (state = initialStore, action: any) => {
+const dialogReducer = (state = initialStore, action: actionType) => {
     switch (action.type) {
         case addMessage:
             let newMessage = {

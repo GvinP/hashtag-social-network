@@ -1,4 +1,4 @@
-import {postPage} from "./state";
+import {actionType, postPage} from "./state";
 
 const addPost = "ADD-POST"
 const updatePost = "UPDATE-POST"
@@ -12,7 +12,7 @@ const initialStore: postPage = {
         newPost: ""
 }
 
-const profileReducer = (state = initialStore, action: any) => {
+const profileReducer = (state = initialStore, action: actionType) => {
     switch (action.type) {
         case addPost:
             let newPost = {

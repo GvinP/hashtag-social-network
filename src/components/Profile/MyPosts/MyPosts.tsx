@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post";
 import {addPostActionCreator, postPage, updatePostActionCreator} from "../../../redux/state";
@@ -13,7 +13,7 @@ function MyPosts(props: myPostsProps) {
         let action = addPostActionCreator()
         props.dispatch(action)
     }
-    let onPostChange = (event: any) => {
+    let onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         let text = event.target.value
         let action = updatePostActionCreator(text)
         props.dispatch(action)
