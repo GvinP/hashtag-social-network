@@ -13,18 +13,20 @@ const initialStore: postPage = {
 }
 
 const profileReducer = (state = initialStore, action: actionType) => {
+    let stateCopy = {}
     switch (action.type) {
         case addPost:
             let newPost = {
                 message: state.newPost,
                 likes: 0
             }
-            state.postsData.push(newPost)
-            state.newPost = '';
-            return state;
+            stateCopy = {...state, postsData: [newPost, ...state.postsData], newPost: ''}
+            return stateCopy;
         case updatePost:
-            state.newPost = action.text;
-            return state;
+            if (action.text) {
+                stateCopy = {...state, newPost: action.text}
+            }
+            return stateCopy;
     }
     return state;
 }

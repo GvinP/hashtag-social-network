@@ -16,12 +16,12 @@ export type postPage = {
     postsData: Array<postsData>,
     newPost: string
 }
-export type _state = {
+export type stateType = {
     dialogPage: dialogPage,
     postPage: postPage
 }
 export type storeType = {
-    _state: _state,
+    _state: stateType,
     _callSubscriber: () => void,
     getState: () => void,
     subscriber: (observer: number) => void,
@@ -29,7 +29,7 @@ export type storeType = {
 }
 export type actionType = {
     type: string
-    text: string
+    text?: string
 }
 const addPost = "ADD-POST"
 const updatePost = "UPDATE-POST"

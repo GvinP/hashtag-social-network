@@ -1,31 +1,19 @@
-import React from "react";
+import {dialogPage} from "../../redux/state";
+import React, {ChangeEvent} from "react";
+import Message from "./DialogItem/Messagge/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import s from "./Dialogs.module.css";
-import Message from "./DialogItem/Messagge/Message";
-import {addMessageActionCreator, dialogPage, updateMessageActionCreator} from "../../redux/state";
 
-
-type dialogsProps = {
+type dialogsPropsType = {
     dialogs: dialogPage,
-    dispatch(action: any): void
+    newMessage: () => void
+    updateMessage: (event: ChangeEvent<HTMLTextAreaElement>) => void
 }
+const Dialogs = (props: dialogsPropsType) => {
 
-const Dialogs = (props: dialogsProps) => {
-    let messages = props.dialogs.messageData.map((message) => <Message textMessage={message.message} id={message.id}/>)
-    let dialogs = props.dialogs.dialogData.map((dialog) => <DialogItem name={dialog.name} id={dialog.id}/>)
-    let newMessage = () => {
-        let action = addMessageActionCreator()
-        props.dispatch(action)
-
-    }
-    let updateMessage = (event: any) => {
-
-        let newTextMessage = event.target.value
-        let action = updateMessageActionCreator(newTextMessage)
-        props.dispatch(action)
-
-
-    }
+    const messages = props.dialogs.messageData.map((message) => <Message textMessage={message.message}
+                                                                         id={message.id}/>)
+    const dialogs = props.dialogs.dialogData.map((dialog) => <DialogItem name={dialog.name} id={dialog.id}/>)
     return (
         <div className={s.dialogs}>
             <div>
@@ -33,11 +21,10 @@ const Dialogs = (props: dialogsProps) => {
             </div>
             <div>
                 {messages}
-                <textarea onChange={updateMessage} value={props.dialogs.newMessage}></textarea>
-                <button onClick={newMessage}>New message</button>
+                <textarea onChange={props.updateMessage} value={props.dialogs.newMessage}></textarea>
+                <button onClick={props.newMessage}>New message</button>
             </div>
         </div>
     );
 }
-
 export default Dialogs;

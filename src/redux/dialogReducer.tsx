@@ -18,18 +18,20 @@ const initialStore: dialogPage = {
 }
 
 const dialogReducer = (state = initialStore, action: actionType) => {
+    let stateCopy = {}
     switch (action.type) {
         case addMessage:
             let newMessage = {
                 message: state.newMessage,
                 id: 4
             }
-            state.messageData.push(newMessage);
-            state.newMessage = "";
-            return state;
+            stateCopy = {...state, messageData: [...state.messageData, newMessage], newMessage: ''}
+            return stateCopy;
         case updateMessage:
-            state.newMessage = action.text;
-            return state;
+            if (action.text) {
+                stateCopy = {...state, newMessage: action.text}
+            }
+            return stateCopy;
     }
     return state;
 }
