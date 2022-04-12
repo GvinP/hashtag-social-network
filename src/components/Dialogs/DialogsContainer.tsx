@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from "react";
-import {actionType, addMessageActionCreator, stateType, updateMessageActionCreator} from "../../redux/state";
+import {actionType, stateType} from "../../redux/state";
 import {connect} from "react-redux";
 import Dialogs from "./Dialogs";
+import {addMessageActionCreator, updateMessageActionCreator} from "../../redux/dialogReducer";
 
 const mapStateToProps = (state: stateType) => {
     return {

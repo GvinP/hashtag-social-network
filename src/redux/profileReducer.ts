@@ -1,7 +1,7 @@
 import {actionType, postPage} from "./state";
 
-const addPost = "ADD-POST"
-const updatePost = "UPDATE-POST"
+const ADD_POST = "ADD-POST"
+const UPDATE_POST = "UPDATE-POST"
 
 const initialStore: postPage = {
     postsData: [
@@ -12,21 +12,30 @@ const initialStore: postPage = {
         newPost: ""
 }
 
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+export const updatePostActionCreator = (text: string) => {
+    return {
+        type: UPDATE_POST,
+        text: text
+    }
+}
+
 const profileReducer = (state = initialStore, action: actionType) => {
-    let stateCopy = {}
     switch (action.type) {
-        case addPost:
+        case ADD_POST:
             let newPost = {
                 message: state.newPost,
                 likes: 0
             }
-            stateCopy = {...state, postsData: [newPost, ...state.postsData], newPost: ''}
-            return stateCopy;
-        case updatePost:
+            return {...state, postsData: [newPost, ...state.postsData], newPost: ''}
+        case UPDATE_POST:
             if (action.text) {
-                stateCopy = {...state, newPost: action.text}
+                return {...state, newPost: action.text}
             }
-            return stateCopy;
     }
     return state;
 }

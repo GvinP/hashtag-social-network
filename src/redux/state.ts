@@ -1,3 +1,5 @@
+import {usersPage} from "./usersReducer";
+
 export type dialogData = {
     name: string, id: number
 }
@@ -18,23 +20,20 @@ export type postPage = {
 }
 export type stateType = {
     dialogPage: dialogPage,
-    postPage: postPage
+    postPage: postPage,
+    usersPage: usersPage
 }
-export type storeType = {
-    _state: stateType,
-    _callSubscriber: () => void,
-    getState: () => void,
-    subscriber: (observer: number) => void,
-    dispatch: (action: number) => void
-}
+// export type storeType = {
+//     _state: stateType,
+//     _callSubscriber: () => void,
+//     getState: () => void,
+//     subscriber: (observer: number) => void,
+//     dispatch: (action: number) => void
+// }
 export type actionType = {
     type: string
     text?: string
 }
-const addPost = "ADD-POST"
-const updatePost = "UPDATE-POST"
-const addMessage = "ADD-MESSAGE"
-const updateMessage = "UPDATE-MESSAGE"
 // export let store: storeType = {
 //     _state: {
 //         dialogPage: {
@@ -74,25 +73,3 @@ const updateMessage = "UPDATE-MESSAGE"
 //         this._callSubscriber();
 //     }
 // }
-export const addPostActionCreator = () => {
-    return {
-        type: addPost
-    }
-}
-export const updatePostActionCreator = (text: string) => {
-    return {
-        type: updatePost,
-        text: text
-    }
-}
-export const addMessageActionCreator = () => {
-    return {
-        type: addMessage
-    }
-}
-export const updateMessageActionCreator = (text: string) => {
-    return {
-        type: updateMessage,
-        text: text
-    }
-}

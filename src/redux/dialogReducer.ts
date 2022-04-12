@@ -1,7 +1,7 @@
 import {actionType, dialogPage} from "./state";
 
-const addMessage = "ADD-MESSAGE"
-const updateMessage = "UPDATE-MESSAGE"
+const ADD_MESSAGE = "ADD-MESSAGE"
+const UPDATE_MESSAGE = "UPDATE-MESSAGE"
 
 const initialStore: dialogPage = {
     dialogData: [
@@ -17,21 +17,30 @@ const initialStore: dialogPage = {
     newMessage: ""
 }
 
+export const addMessageActionCreator = () => {
+    return {
+        type: ADD_MESSAGE
+    }
+}
+export const updateMessageActionCreator = (text: string) => {
+    return {
+        type: UPDATE_MESSAGE,
+        text: text
+    }
+}
+
 const dialogReducer = (state = initialStore, action: actionType) => {
-    let stateCopy = {}
     switch (action.type) {
-        case addMessage:
+        case ADD_MESSAGE:
             let newMessage = {
                 message: state.newMessage,
                 id: 4
             }
-            stateCopy = {...state, messageData: [...state.messageData, newMessage], newMessage: ''}
-            return stateCopy;
-        case updateMessage:
+            return {...state, messageData: [...state.messageData, newMessage], newMessage: ''}
+        case UPDATE_MESSAGE:
             if (action.text) {
-                stateCopy = {...state, newMessage: action.text}
+                return {...state, newMessage: action.text}
             }
-            return stateCopy;
     }
     return state;
 }

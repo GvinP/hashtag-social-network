@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from "react";
-import {actionType, addPostActionCreator, stateType, updatePostActionCreator} from "../../../redux/state";
+import {actionType, stateType} from "../../../redux/state";
 import {connect} from "react-redux";
 import MyPosts from "./MyPosts";
+import {addPostActionCreator, updatePostActionCreator} from "../../../redux/profileReducer";
 
 
 let mapStateToProps = (state: stateType) => {
