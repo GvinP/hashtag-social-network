@@ -1,16 +1,28 @@
-import React, {ChangeEvent} from "react";
-import {actionType, stateType} from "../../../redux/state";
+import {ChangeEvent} from "react";
 import {connect} from "react-redux";
 import MyPosts from "./MyPosts";
-import {addPostActionCreator, updatePostActionCreator} from "../../../redux/profileReducer";
+import {addPostActionCreator, profileInitialStoreType, updatePostActionCreator} from "../../../redux/profileReducer";
+import {AppStateType} from "../../../redux/reduxState";
+import {Dispatch} from "redux";
+
+type mapStateToPropsType = {
+    posts: profileInitialStoreType
+}
+type mapDispatchToPropsType = {
+    newPost: () => void
+    onPostChange: (event: ChangeEvent<HTMLTextAreaElement>) => void
+}
+
+export type myPostsPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 
-let mapStateToProps = (state: stateType) => {
+
+let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         posts: state.postPage
     }
 }
-let mapDispatchToProps = (dispatch: (action: actionType) => void) => {
+let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         newPost: () => {
             dispatch(addPostActionCreator())

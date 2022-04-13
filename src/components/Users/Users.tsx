@@ -1,13 +1,9 @@
 import React from "react";
-import {user, usersPage} from "../../redux/usersReducer";
+import {usersPropsType} from "./UsersContainer";
 
-type usersPropsType = {
-    users: Array<user>,
-    followed: (userId: number) => void
-    setUsers: (users: Array<user>) => void
-}
+
 const Users = (props: usersPropsType) => {
-    const users = props.users.map((u) => {
+    const users = props.usersPage.users.map((u) => {
         return <div key={u.id}>
             <div>{u.fullName}</div>
             <button onClick={() => props.followed(u.id)}>{u.followed ? 'unfollow' : 'follow'}</button>
@@ -18,7 +14,7 @@ const Users = (props: usersPropsType) => {
     return (
         <div>
             {users}
-            <button onClick={() => props.setUsers(props.users)}>Set users</button>
+            <button onClick={() => props.setUsers(props.usersPage.users)}>Set users</button>
         </div>
     );
 }

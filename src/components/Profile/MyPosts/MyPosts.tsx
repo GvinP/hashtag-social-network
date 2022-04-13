@@ -1,13 +1,8 @@
-import {postPage} from "../../../redux/state";
 import Post from "./Post/Post";
 import s from "./MyPosts.module.css";
-import React, {ChangeEvent} from "react";
+import React from "react";
+import {myPostsPropsType} from "./MyPostsContainer";
 
-type myPostsPropsType = {
-    posts: postPage
-    newPost: () => void
-    onPostChange: (event: ChangeEvent<HTMLTextAreaElement>) => void
-}
 
 const MyPosts = (props: myPostsPropsType) => {
     let posts = props.posts.postsData.map((p) => <Post message={p.message}/>)

@@ -1,15 +1,30 @@
-import {actionType, postPage} from "./state";
+import {allActionsType} from "./state";
 
 const ADD_POST = "ADD-POST"
 const UPDATE_POST = "UPDATE-POST"
 
-const initialStore: postPage = {
+type postData = {
+    message: string, likes: number
+}
+
+const profileInitialStore = {
     postsData: [
         {message: "First Post", likes: 11},
         {message: "Second Post", likes: 22},
         {message: "Third Post", likes: 33}
-    ],
+    ] as Array<postData>,
         newPost: ""
+}
+
+export type profileInitialStoreType = typeof profileInitialStore
+
+export type addPostActionType = {
+    type: "ADD-POST"
+}
+
+export type updatePostActionType = {
+    type: "UPDATE-POST"
+    text: string
 }
 
 export const addPostActionCreator = () => {
@@ -24,7 +39,7 @@ export const updatePostActionCreator = (text: string) => {
     }
 }
 
-const profileReducer = (state = initialStore, action: actionType) => {
+const profileReducer = (state = profileInitialStore, action: allActionsType) => {
     switch (action.type) {
         case ADD_POST:
             let newPost = {

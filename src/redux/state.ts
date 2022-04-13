@@ -1,75 +1,82 @@
-import {usersPage} from "./usersReducer";
+import {followActionType, setUsersActionType} from "./usersReducer";
+import {addMessageActionType, updateMessageActionType} from "./dialogReducer";
+import {addPostActionType, updatePostActionType} from "./profileReducer";
 
-export type dialogData = {
-    name: string, id: number
-}
-export type messageData = {
-    message: string, id: number
-}
-export type postsData = {
-    message: string, likes: number
-}
-export type dialogPage = {
-    dialogData: Array<dialogData>,
-    messageData: Array<messageData>,
-    newMessage: string
-}
-export type postPage = {
-    postsData: Array<postsData>,
-    newPost: string
-}
-export type stateType = {
-    dialogPage: dialogPage,
-    postPage: postPage,
-    usersPage: usersPage
-}
-// export type storeType = {
-//     _state: stateType,
-//     _callSubscriber: () => void,
-//     getState: () => void,
-//     subscriber: (observer: number) => void,
-//     dispatch: (action: number) => void
+export type allActionsType = followActionType | setUsersActionType
+    | addMessageActionType | updateMessageActionType
+    | addPostActionType | updatePostActionType
+
+
+//  type dialogData = {
+//     name: string, id: number
 // }
-export type actionType = {
-    type: string
-    text?: string
-}
-// export let store: storeType = {
-//     _state: {
-//         dialogPage: {
-//             dialogData: [
-//                 {name: "First User", id: 1},
-//                 {name: "Second User", id: 2},
-//                 {name: "Third User", id: 3}
-//             ],
-//             messageData: [
-//                 {message: "First Message", id: 1},
-//                 {message: "Second Message", id: 2},
-//                 {message: "Third Message", id: 3}
-//             ],
-//             newMessage: ""
-//         },
-//         postPage: {
-//             postsData: [
-//                 {message: "First Post", likes: 11},
-//                 {message: "Second Post", likes: 22},
-//                 {message: "Third Post", likes: 33}
-//             ],
-//             newPost: ""
-//         },
-//     },
-//     getState() {
-//         return this._state;
-//     },
-//     _callSubscriber() {
-//         console.log("state changed");
-//     },
-//     subscriber(observer) {
-//         this._callSubscriber = observer;
-//     },
-//     dispatch(action) {
-//         profileReducer(this._state.postPage, action);
-//         dialogReducer(this._state.dialogPage, action);
-//         this._callSubscriber();
-//     }
+//  type messageData = {
+//     message: string, id: number
 // }
+//  type postsData = {
+//     message: string, likes: number
+// }
+//  type dialogPage = {
+//     dialogData: Array<dialogData>,
+//     messageData: Array<messageData>,
+//     newMessage: string
+// }
+//  type postPage = {
+//     postsData: Array<postsData>,
+//     newPost: string
+// }
+//  type stateType = {
+//     dialogPage: dialogPage,
+//     postPage: postPage,
+//     usersPage: usersPage
+// }
+// // export type storeType = {
+// //     _state: stateType,
+// //     _callSubscriber: () => void,
+// //     getState: () => void,
+// //     subscriber: (observer: number) => void,
+// //     dispatch: (action: number) => void
+// // }
+// export type actionType = {
+//     type: string
+//     text?: string
+// }
+// // export let store: storeType = {
+// //     _state: {
+// //         dialogPage: {
+// //             dialogData: [
+// //                 {name: "First User", id: 1},
+// //                 {name: "Second User", id: 2},
+// //                 {name: "Third User", id: 3}
+// //             ],
+// //             messageData: [
+// //                 {message: "First Message", id: 1},
+// //                 {message: "Second Message", id: 2},
+// //                 {message: "Third Message", id: 3}
+// //             ],
+// //             newMessage: ""
+// //         },
+// //         postPage: {
+// //             postsData: [
+// //                 {message: "First Post", likes: 11},
+// //                 {message: "Second Post", likes: 22},
+// //                 {message: "Third Post", likes: 33}
+// //             ],
+// //             newPost: ""
+// //         },
+// //     },
+// //     getState() {
+// //         return this._state;
+// //     },
+// //     _callSubscriber() {
+// //         console.log("state changed");
+// //     },
+// //     subscriber(observer) {
+// //         this._callSubscriber = observer;
+// //     },
+// //     dispatch(action) {
+// //         profileReducer(this._state.postPage, action);
+// //         dialogReducer(this._state.dialogPage, action);
+// //         this._callSubscriber();
+// //     }
+// // }
