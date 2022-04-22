@@ -4,43 +4,44 @@ const FOLLOW = "FOLLOW"
 const SET_USERS = "SET-USERS"
 
 export type user = {
-    id: number
     followed: boolean
-    fullName: string
-    status: string
-    location: {
-        city: string
-        country: string
-    }
+    id: number
+    name: string
+    status: string | null
+    uniqueUrlName: string | null
+    // location: {
+    //     city: string
+    //     country: string
+    // }
 }
 
 export type usersPage = {
     users: Array<user>
 }
 
-const initialState = {
+const initialState: usersPage = {
     users: [
-        {
-            id: 1,
-            followed: true,
-            fullName: 'First User',
-            status: 'First User status',
-            location: {city: 'City', country: 'Country'}
-        },
-        {
-            id: 2,
-            followed: false,
-            fullName: 'Second User',
-            status: 'Second User status',
-            location: {city: 'City', country: 'Country'}
-        },
-        {
-            id: 3,
-            followed: true,
-            fullName: 'Third User',
-            status: 'Third User status',
-            location: {city: 'City', country: 'Country'}
-        }
+        // {
+        //     id: 1,
+        //     followed: true,
+        //     fullName: 'First User',
+        //     status: 'First User status',
+        //     location: {city: 'City', country: 'Country'}
+        // },
+        // {
+        //     id: 2,
+        //     followed: false,
+        //     fullName: 'Second User',
+        //     status: 'Second User status',
+        //     location: {city: 'City', country: 'Country'}
+        // },
+        // {
+        //     id: 3,
+        //     followed: true,
+        //     fullName: 'Third User',
+        //     status: 'Third User status',
+        //     location: {city: 'City', country: 'Country'}
+        // }
     ]
 }
 
@@ -62,11 +63,11 @@ const usersReducer = (state = initialState, action: allActionsType): usersPage =
         case FOLLOW:
             return {users: state.users.map(el => el.id === action.userId ? {...el, followed: !el.followed} : el)}
         case SET_USERS:
-            if (action.users) {
-                return {...state, users: [...state.users, ...action.users]}
-            }
+            return {...state, users: [...action.users]}
+        default:
+            return state
     }
-    return state;
 }
+
 
 export default usersReducer;

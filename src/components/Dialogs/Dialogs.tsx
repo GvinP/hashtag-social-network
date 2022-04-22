@@ -6,9 +6,9 @@ import {dialogsPropsType} from "./DialogsContainer";
 
 const Dialogs = (props: dialogsPropsType) => {
 
-    const messages = props.dialogPage.messageData.map((message) => <Message textMessage={message.message}
+    const messages = props.dialogPage.messageData.map((message) => <Message key={message.id} textMessage={message.message}
                                                                          id={message.id}/>)
-    const dialogs = props.dialogPage.dialogData.map((dialog) => <DialogItem name={dialog.name} id={dialog.id}/>)
+    const dialogs = props.dialogPage.dialogData.map((dialog) => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
     return (
         <div className={s.dialogs}>
             <div>

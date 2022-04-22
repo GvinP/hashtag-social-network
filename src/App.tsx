@@ -12,7 +12,7 @@ import {UsersContainer} from "./components/Users/UsersContainer";
 
 
 const App = () => {
-    return (
+        return (
             <div className="app-wrapper">
                 <Header/>
                 <Navigation/>

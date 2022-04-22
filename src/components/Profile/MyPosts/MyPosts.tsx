@@ -5,7 +5,7 @@ import {myPostsPropsType} from "./MyPostsContainer";
 
 
 const MyPosts = (props: myPostsPropsType) => {
-    let posts = props.posts.postsData.map((p) => <Post message={p.message}/>)
+    let posts = props.posts.postsData.map((p,index) => <Post key={index} message={p.message}/>)
     return (
         <div className={s.content}>
             <div>
