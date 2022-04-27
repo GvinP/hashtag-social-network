@@ -2,7 +2,7 @@ import {ChangeEvent} from "react";
 import {connect} from "react-redux";
 import MyPosts from "./MyPosts";
 import {addPostActionCreator, profileInitialStoreType, updatePostActionCreator} from "../../../redux/profileReducer";
-import {AppStateType} from "../../../redux/reduxState";
+import {AppStateType} from "../../../redux/store";
 import {Dispatch} from "redux";
 
 type mapStateToPropsType = {

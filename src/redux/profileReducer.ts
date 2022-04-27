@@ -51,8 +51,10 @@ const profileReducer = (state = profileInitialStore, action: allActionsType) => 
             if (action.text) {
                 return {...state, newPost: action.text}
             }
+            return state
+        default:
+            return state
     }
-    return state;
 }
 
 export default profileReducer;

@@ -59,8 +59,10 @@ const dialogReducer = (state = dialogsInitialState, action: allActionsType) => {
             if (action.text) {
                 return {...state, newMessage: action.text}
             }
+            return state
+        default:
+            return state
     }
-    return state;
 }
 
 export default dialogReducer;

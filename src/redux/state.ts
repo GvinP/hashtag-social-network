@@ -1,10 +1,18 @@
-import {followActionType, setUsersActionType} from "./usersReducer";
+import {
+    followActionType,
+    setCurrentPageActionType,
+    setLoaderActionType,
+    setTotalCountActionType,
+    setUsersActionType
+} from "./usersReducer";
 import {addMessageActionType, updateMessageActionType} from "./dialogReducer";
 import {addPostActionType, updatePostActionType} from "./profileReducer";
 
 export type allActionsType = followActionType | setUsersActionType
     | addMessageActionType | updateMessageActionType
     | addPostActionType | updatePostActionType
+    | setTotalCountActionType | setCurrentPageActionType
+    | setLoaderActionType
 
 
 //  type dialogData = {
