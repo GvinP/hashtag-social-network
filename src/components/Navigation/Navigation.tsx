@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 function Navigation () {
     return (
         <nav className={s.navigation}>
-            <div><NavLink to="/Profile" className={data => data.isActive ? s.active : s.link}>Profile</NavLink></div>
+            <div><NavLink to="/profile" className={data => data.isActive ? s.active : s.link}>Profile</NavLink></div>
             <div><NavLink to="/Dialogs" className={data => data.isActive ? s.active : s.link}>Messages</NavLink></div>
             <div><NavLink to="/Users" className={data => data.isActive ? s.active : s.link}>Users</NavLink></div>
             <div><NavLink to="/News" className={data => data.isActive ? s.active : s.link}>News</NavLink></div>

@@ -1,12 +1,12 @@
 import {ChangeEvent} from "react";
 import {connect} from "react-redux";
 import MyPosts from "./MyPosts";
-import {addPostActionCreator, profileInitialStoreType, updatePostActionCreator} from "../../../redux/profileReducer";
+import {addPost, profileStoreType, updatePost} from "../../../redux/profileReducer";
 import {AppStateType} from "../../../redux/store";
 import {Dispatch} from "redux";
 
 type mapStateToPropsType = {
-    posts: profileInitialStoreType
+    posts: profileStoreType
 }
 type mapDispatchToPropsType = {
     newPost: () => void
@@ -19,16 +19,16 @@ export type myPostsPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        posts: state.postPage
+        posts: state.profilePage
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         newPost: () => {
-            dispatch(addPostActionCreator())
+            dispatch(addPost())
         },
         onPostChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
-            dispatch(updatePostActionCreator(event.target.value))
+            dispatch(updatePost(event.target.value))
         }
     }
 }

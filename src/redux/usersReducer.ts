@@ -60,11 +60,11 @@ export type setLoaderActionType = {
     isLoading: boolean
 }
 
-export const followAC = (userId: number) => ({type: FOLLOW, userId})
-export const setUsersAC = (users: Array<user>) => ({type: SET_USERS, users})
-export const setTotalCountAC = (totalCount: number) => ({type: SET_TOTAL_COUNT, totalCount})
-export const setCurrentPageAC = (page: number) => ({type: SET_CURRENT_PAGE, page})
-export const setLoaderAC = (isLoading: boolean) => ({type: SET_LOADER, isLoading})
+export const follow = (userId: number) => ({type: FOLLOW, userId})
+export const setUsers = (users: Array<user>) => ({type: SET_USERS, users})
+export const setTotalCount = (totalCount: number) => ({type: SET_TOTAL_COUNT, totalCount})
+export const setCurrentPage = (page: number) => ({type: SET_CURRENT_PAGE, page})
+export const setLoader = (isLoading: boolean) => ({type: SET_LOADER, isLoading})
 
 const usersReducer = (state = initialState, action: allActionsType): usersPage => {
     switch (action.type) {

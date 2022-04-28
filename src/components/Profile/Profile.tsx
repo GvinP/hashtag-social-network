@@ -1,18 +1,19 @@
 import React from "react";
-import s from "./Profile.module.css"
-import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
+import {Loader} from "../common/loader/Loader";
+import {ProfileType} from "../../redux/profileReducer";
+import avatar from '../../images/User-avatar.png'
 
-const Profile = () => {
-    return (
-        <div className={s.content}>
-            <div>
-                <img width={60} src='https://mobimg.b-cdn.net/v3/fetch/16/162162e62dd1166239149cae60f30252.jpeg'
-                     alt="avatar"/>
-                <p>My name</p>
-            </div>
-            <MyPostsContainer/>
-        </div>
-    );
+type UserProfilePropsType = {
+    profile: ProfileType
 }
 
-export default Profile;
+
+export const Profile = (props: UserProfilePropsType) => {
+    return (
+        <>
+            <p>{props.profile?.userId}</p>
+            <img width={'60px'} src={props.profile.photos?.large? props.profile.photos.large : avatar}/>
+            <h1>{props.profile?.fullName}</h1>
+        </>
+    )
+}
