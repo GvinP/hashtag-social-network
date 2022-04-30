@@ -43,8 +43,8 @@ class UsersContainer extends React.Component<UsersPropsType> {
     }
 
     render() {
-        return <Users usersPage={this.props.usersPage}
-                      followed={this.props.follow}
+        return <Users {...this.props}
+                      follow={this.props.follow}
                       onClickPage={(page)=>this.onClickPage(page)}
         />
     }

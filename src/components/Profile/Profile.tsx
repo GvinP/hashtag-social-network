@@ -11,9 +11,9 @@ type UserProfilePropsType = {
 export const Profile = (props: UserProfilePropsType) => {
     return (
         <>
-            <p>{props.profile?.userId}</p>
-            <img width={'60px'} src={props.profile.photos?.large? props.profile.photos.large : avatar}/>
+            <img width={'260px'} src={props.profile.photos?.large? props.profile.photos.large : avatar}/>
             <h1>{props.profile?.fullName}</h1>
+            <p>{props.profile.aboutMe}</p>
         </>
     )
 }

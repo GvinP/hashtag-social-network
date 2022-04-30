@@ -9,6 +9,7 @@ type postData = {
 }
 
 export type ProfileType = {
+    aboutMe: string,
     contacts: {
         facebook: string,
         website: string,
