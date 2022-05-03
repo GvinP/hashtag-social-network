@@ -1,24 +1,24 @@
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/store";
 import React from "react";
-import axios from "axios";
 import Header from "./Header";
 import {AuthType, setAuthData} from "../../redux/authReducer";
+import {authMe} from "../../api/api";
 
 export type mapStateToPropsType = {
     authData: AuthType
 }
 
+export type mapDispatchToPropsType = {
+    setAuthData: (data: void) => void
+}
 
-export type AuthDataPropsType = mapStateToPropsType
+export type AuthDataPropsType = mapStateToPropsType&mapDispatchToPropsType
 
-class HeaderContainer extends React.Component<any> {
+class HeaderContainer extends React.Component<AuthDataPropsType> {
     componentDidMount() {
-
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-            withCredentials: true
-        }).then(response => {
-            this.props.setAuthData(response.data)
+        authMe().then(data => {
+            this.props.setAuthData(data)
         })
     }
 

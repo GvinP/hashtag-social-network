@@ -31,7 +31,7 @@ const initialState: usersPage = {
     users: [],
     totalCount: 0,
     pageSize: 5,
-    currentPage: 2,
+    currentPage: 1,
     isLoading: false
 }
 
