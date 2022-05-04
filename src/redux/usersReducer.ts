@@ -5,6 +5,7 @@ const SET_USERS = "SET-USERS"
 const SET_TOTAL_COUNT = "SET-TOTAL-COUNT"
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE"
 const SET_LOADER = "SET-LOADER"
+const SET_FOLLOWING_PROGRESS = "SET-FOLLOWING-PROGRESS"
 
 
 export type user = {
@@ -25,6 +26,8 @@ export type usersPage = {
     pageSize: number
     currentPage: number
     isLoading: boolean
+    followingProgress: boolean
+    followingId: number
 }
 
 const initialState: usersPage = {
@@ -32,7 +35,9 @@ const initialState: usersPage = {
     totalCount: 0,
     pageSize: 5,
     currentPage: 1,
-    isLoading: false
+    isLoading: false,
+    followingProgress: false,
+    followingId: 0
 }
 
 export type followActionType = {
@@ -60,11 +65,18 @@ export type setLoaderActionType = {
     isLoading: boolean
 }
 
+export type setFollowingProgressActionType = {
+    type: "SET-FOLLOWING-PROGRESS"
+    followingProgress: boolean
+    id: number
+}
+
 export const follow = (userId: number) => ({type: FOLLOW, userId})
 export const setUsers = (users: Array<user>) => ({type: SET_USERS, users})
 export const setTotalCount = (totalCount: number) => ({type: SET_TOTAL_COUNT, totalCount})
 export const setCurrentPage = (page: number) => ({type: SET_CURRENT_PAGE, page})
 export const setLoader = (isLoading: boolean) => ({type: SET_LOADER, isLoading})
+export const setFollowingProgress = (followingProgress: boolean, id: number) => ({type: SET_FOLLOWING_PROGRESS, followingProgress, id})
 
 const usersReducer = (state = initialState, action: allActionsType): usersPage => {
     switch (action.type) {
@@ -78,6 +90,8 @@ const usersReducer = (state = initialState, action: allActionsType): usersPage =
             return {...state, currentPage: action.page}
         case SET_LOADER:
             return {...state, isLoading: action.isLoading}
+        case SET_FOLLOWING_PROGRESS:
+            return {...state, followingProgress: action.followingProgress, followingId: action.id}
         default:
             return state
     }

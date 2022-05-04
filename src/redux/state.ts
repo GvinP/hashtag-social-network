@@ -1,6 +1,6 @@
 import {
     followActionType,
-    setCurrentPageActionType,
+    setCurrentPageActionType, setFollowingProgressActionType,
     setLoaderActionType,
     setTotalCountActionType,
     setUsersActionType
@@ -13,6 +13,7 @@ export type allActionsType = followActionType | setUsersActionType
     | addPostActionType | updatePostActionType
     | setTotalCountActionType | setCurrentPageActionType
     | setLoaderActionType | setProfileActionType
+    | setFollowingProgressActionType
 
 
 //  type dialogData = {

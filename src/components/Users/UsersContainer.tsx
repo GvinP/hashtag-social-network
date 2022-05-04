@@ -1,5 +1,14 @@
 import {connect} from "react-redux";
-import {follow, setCurrentPage, setLoader, setTotalCount, setUsers, user, usersPage} from "../../redux/usersReducer";
+import {
+    follow,
+    setCurrentPage,
+    setFollowingProgress,
+    setLoader,
+    setTotalCount,
+    setUsers,
+    user,
+    usersPage
+} from "../../redux/usersReducer";
 import {AppStateType} from "../../redux/store";
 import React from "react";
 import {Users} from "./Users";
@@ -11,6 +20,8 @@ export type mapStateToPropsType = {
     pageSize: number
     currentPage: number
     isLoading: boolean
+    followingProgress: boolean
+    followingId: number
 }
 export type mapDispatchToPropsType = {
     follow: (userId: number) => void
@@ -18,6 +29,7 @@ export type mapDispatchToPropsType = {
     setTotalCount: (totalCount: number) => void
     setCurrentPage: (page: number) => void
     setLoader: (isLoading: boolean) => void
+    setFollowingProgress: (followingProgress: boolean, id: number) => void
 }
 
 export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
@@ -56,9 +68,11 @@ class UsersContainer extends React.Component<UsersPropsType> {
         totalCount: state.usersPage.totalCount,
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
-        isLoading: state.usersPage.isLoading
+        isLoading: state.usersPage.isLoading,
+        followingId: state.usersPage.followingId,
+        followingProgress: state.usersPage.followingProgress
     }
 }
 
 export default connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
-    {follow, setUsers, setTotalCount, setCurrentPage, setLoader})(UsersContainer as any)
+    {follow, setUsers, setTotalCount, setCurrentPage, setLoader, setFollowingProgress})(UsersContainer as any)

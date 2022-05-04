@@ -10,6 +10,7 @@ type UsersPropsType = {
     usersPage: usersPage
     follow: (userId: number) => void
     onClickPage: (page: number) => void
+    setFollowingProgress: (followingProgress: boolean, id: number) => void
 }
 
 export const Users = (props: UsersPropsType) => {
@@ -41,17 +42,21 @@ export const Users = (props: UsersPropsType) => {
 
                         <div>{u.name}</div>
                         <button
+                            disabled={props.usersPage.followingId === u.id ? props.usersPage.followingProgress : false}
                             onClick={() => {
+                                props.setFollowingProgress(true, u.id)
                                 u.followed ?
                                     unfollow(u.id).then(data => {
                                         if (data.resultCode === 0) {
                                             props.follow(u.id)
                                         }
+                                        props.setFollowingProgress(false, u.id)
                                     })
                                     : follow(u.id).then(data => {
                                         if (data.resultCode === 0) {
                                             props.follow(u.id)
                                         }
+                                        props.setFollowingProgress(false, u.id)
                                     })
 
                             }}>{u.followed ? 'unfollow' : 'follow'}</button>
