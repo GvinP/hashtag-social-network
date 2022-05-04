@@ -26,8 +26,8 @@ export type usersPage = {
     pageSize: number
     currentPage: number
     isLoading: boolean
-    followingProgress: boolean
-    followingId: number
+    followingProgress: Array<number>
+
 }
 
 const initialState: usersPage = {
@@ -36,8 +36,7 @@ const initialState: usersPage = {
     pageSize: 5,
     currentPage: 1,
     isLoading: false,
-    followingProgress: false,
-    followingId: 0
+    followingProgress: [],
 }
 
 export type followActionType = {
@@ -76,12 +75,19 @@ export const setUsers = (users: Array<user>) => ({type: SET_USERS, users})
 export const setTotalCount = (totalCount: number) => ({type: SET_TOTAL_COUNT, totalCount})
 export const setCurrentPage = (page: number) => ({type: SET_CURRENT_PAGE, page})
 export const setLoader = (isLoading: boolean) => ({type: SET_LOADER, isLoading})
-export const setFollowingProgress = (followingProgress: boolean, id: number) => ({type: SET_FOLLOWING_PROGRESS, followingProgress, id})
+export const setFollowingProgress = (followingProgress: boolean, id: number) => ({
+    type: SET_FOLLOWING_PROGRESS,
+    followingProgress,
+    id
+})
 
 const usersReducer = (state = initialState, action: allActionsType): usersPage => {
     switch (action.type) {
         case FOLLOW:
-            return {...state, users: state.users.map(el => el.id === action.userId ? {...el, followed: !el.followed} : el)}
+            return {
+                ...state,
+                users: state.users.map(el => el.id === action.userId ? {...el, followed: !el.followed} : el)
+            }
         case SET_USERS:
             return {...state, users: [...action.users]}
         case SET_TOTAL_COUNT:
@@ -91,7 +97,10 @@ const usersReducer = (state = initialState, action: allActionsType): usersPage =
         case SET_LOADER:
             return {...state, isLoading: action.isLoading}
         case SET_FOLLOWING_PROGRESS:
-            return {...state, followingProgress: action.followingProgress, followingId: action.id}
+            return {
+                ...state, followingProgress: action.followingProgress ? [...state.followingProgress, action.id]
+                    : state.followingProgress.filter(el => el !== action.id)
+            }
         default:
             return state
     }

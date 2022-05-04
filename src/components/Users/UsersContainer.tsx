@@ -20,8 +20,7 @@ export type mapStateToPropsType = {
     pageSize: number
     currentPage: number
     isLoading: boolean
-    followingProgress: boolean
-    followingId: number
+    followingProgress: Array<number>
 }
 export type mapDispatchToPropsType = {
     follow: (userId: number) => void
@@ -29,7 +28,7 @@ export type mapDispatchToPropsType = {
     setTotalCount: (totalCount: number) => void
     setCurrentPage: (page: number) => void
     setLoader: (isLoading: boolean) => void
-    setFollowingProgress: (followingProgress: boolean, id: number) => void
+    setFollowingProgress: (follow: boolean, id: number) => void
 }
 
 export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
@@ -57,20 +56,19 @@ class UsersContainer extends React.Component<UsersPropsType> {
     render() {
         return <Users {...this.props}
                       follow={this.props.follow}
-                      onClickPage={(page)=>this.onClickPage(page)}
+                      onClickPage={(page) => this.onClickPage(page)}
         />
     }
 }
 
- const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         usersPage: state.usersPage,
         totalCount: state.usersPage.totalCount,
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
         isLoading: state.usersPage.isLoading,
-        followingId: state.usersPage.followingId,
-        followingProgress: state.usersPage.followingProgress
+        followingProgress: state.usersPage.followingProgress,
     }
 }
 
