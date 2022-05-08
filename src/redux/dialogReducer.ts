@@ -29,7 +29,6 @@ export type dialogsInitialStateType = typeof dialogsInitialState
 export type addMessageActionType = {
     type: "ADD-MESSAGE"
 }
-
 export type updateMessageActionType = {
     type: "UPDATE-MESSAGE"
     text: string

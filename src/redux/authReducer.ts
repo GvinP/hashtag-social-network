@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {authApi} from "../api/api";
+
 const SET_AUTH = "SET-AUTH"
 
 export type AuthType = {
@@ -23,10 +26,15 @@ const authInitialStore: AuthType = {
 }
 
 export type authStoreType = typeof authInitialStore
-
 export type setAuthDataActionType = ReturnType<typeof setAuthData>
 
 export const setAuthData = (authData: AuthType) => ({type: SET_AUTH, authData}) as const
+export const setAuthDataTC =()=> (dispatch: Dispatch)=>{
+    authApi.authMe().then(data => {
+        dispatch(setAuthData(data))
+    })
+}
+
 
 
 const authReducer = (state = authInitialStore, action: setAuthDataActionType): authStoreType => {

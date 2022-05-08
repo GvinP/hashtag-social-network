@@ -1,5 +1,4 @@
 import React from "react";
-import {Loader} from "../common/loader/Loader";
 import {ProfileType} from "../../redux/profileReducer";
 import avatar from '../../images/User-avatar.png'
 

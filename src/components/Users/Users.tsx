@@ -3,12 +3,12 @@ import avatar from "../../images/User-avatar.png";
 import {usersPage} from "../../redux/usersReducer";
 import {Loader} from "../common/loader/Loader";
 import {NavLink} from "react-router-dom";
-import {follow, unfollow} from "../../api/api";
 
 
 type UsersPropsType = {
     usersPage: usersPage
-    follow: (userId: number) => void
+    followTC: (userId: number) => void
+    unfollowTC: (userId: number) => void
     onClickPage: (page: number) => void
     setFollowingProgress: (follow: boolean, id: number) => void
 }
@@ -46,18 +46,8 @@ export const Users = (props: UsersPropsType) => {
                             onClick={() => {
                                 props.setFollowingProgress(true, u.id)
                                 u.followed ?
-                                    unfollow(u.id).then(data => {
-                                        if (data.resultCode === 0) {
-                                            props.follow(u.id)
-                                        }
-                                        props.setFollowingProgress(false, u.id)
-                                    })
-                                    : follow(u.id).then(data => {
-                                        if (data.resultCode === 0) {
-                                            props.follow(u.id)
-                                        }
-                                        props.setFollowingProgress(false, u.id)
-                                    })
+                                    props.unfollowTC(u.id)
+                                    : props.followTC(u.id)
 
                             }}>{u.followed ? 'unfollow' : 'follow'}</button>
                         <div>{u.status}</div>

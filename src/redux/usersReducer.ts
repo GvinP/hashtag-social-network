@@ -1,4 +1,6 @@
 import {allActionsType} from "./state";
+import {usersApi} from "../api/api";
+import {Dispatch} from "redux";
 
 const FOLLOW = "FOLLOW"
 const SET_USERS = "SET-USERS"
@@ -19,7 +21,6 @@ export type user = {
         large: string | null
     }
 }
-
 export type usersPage = {
     users: Array<user>
     totalCount: number
@@ -43,27 +44,22 @@ export type followActionType = {
     type: "FOLLOW"
     userId: number
 }
-
 export type setUsersActionType = {
     type: "SET-USERS"
     users: Array<user>
 }
-
 export type setTotalCountActionType = {
     type: "SET-TOTAL-COUNT"
     totalCount: number
 }
-
 export type setCurrentPageActionType = {
     type: "SET-CURRENT-PAGE"
     page: number
 }
-
 export type setLoaderActionType = {
     type: "SET-LOADER"
     isLoading: boolean
 }
-
 export type setFollowingProgressActionType = {
     type: "SET-FOLLOWING-PROGRESS"
     followingProgress: boolean
@@ -80,6 +76,34 @@ export const setFollowingProgress = (followingProgress: boolean, id: number) => 
     followingProgress,
     id
 })
+
+export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+    dispatch(setLoader(true))
+    usersApi.getUsers(currentPage, pageSize)
+        .then(data => {
+            dispatch(setLoader(false))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalCount(data.totalCount))
+        })
+}
+export const followTC = (userId: number) => (dispatch: Dispatch)=> {
+    usersApi.follow(userId)
+        .then(data => {
+        if (data.resultCode === 0) {
+            dispatch(follow(userId))
+        }
+        dispatch(setFollowingProgress(false, userId))
+    })
+}
+export const unfollowTC = (userId: number) => (dispatch: Dispatch)=> {
+    usersApi.unfollow(userId)
+        .then(data => {
+        if (data.resultCode === 0) {
+            dispatch(follow(userId))
+        }
+        dispatch(setFollowingProgress(false, userId))
+    })
+}
 
 const usersReducer = (state = initialState, action: allActionsType): usersPage => {
     switch (action.type) {

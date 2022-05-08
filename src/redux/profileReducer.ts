@@ -1,4 +1,6 @@
 import {allActionsType} from "./state";
+import {Dispatch} from "redux";
+import {usersApi} from "../api/api";
 
 const ADD_POST = "ADD-POST"
 const UPDATE_POST = "UPDATE-POST"
@@ -7,7 +9,6 @@ const SET_PROFILE = "SET-PROFILE"
 type postData = {
     message: string, likes: number
 }
-
 export type ProfileType = {
     aboutMe: string,
     contacts: {
@@ -39,7 +40,6 @@ const profileInitialStore = {
     ] as Array<postData>,
     newPost: ""
 }
-
 export type profileStoreType = typeof profileInitialStore
 
 export type addPostActionType = {
@@ -54,23 +54,16 @@ export type setProfileActionType = {
     profile: ProfileType
 }
 
-export const addPost = () => {
-    return {
-        type: ADD_POST
-    }
+export const addPost = () => ({type: ADD_POST})
+export const updatePost = (text: string) => ({type: UPDATE_POST, text: text})
+export const setUserProfile = (profile: ProfileType) => ({type: SET_PROFILE, profile})
+
+export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
+    usersApi.getUserProfile(userId).then(data => {
+        dispatch(setUserProfile(data))
+    })
 }
-export const updatePost = (text: string) => {
-    return {
-        type: UPDATE_POST,
-        text: text
-    }
-}
-export const setUserProfile = (profile: ProfileType) => {
-    return {
-        type: SET_PROFILE,
-        profile
-    }
-}
+
 
 const profileReducer = (state = profileInitialStore, action: allActionsType): profileStoreType => {
 

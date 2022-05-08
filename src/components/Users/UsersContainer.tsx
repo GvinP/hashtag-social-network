@@ -1,18 +1,17 @@
 import {connect} from "react-redux";
 import {
-    follow,
+    followTC,
+    unfollowTC,
+    getUsers,
     setCurrentPage,
     setFollowingProgress,
     setLoader,
     setTotalCount,
-    setUsers,
-    user,
     usersPage
 } from "../../redux/usersReducer";
 import {AppStateType} from "../../redux/store";
 import React from "react";
 import {Users} from "./Users";
-import {getUsers} from "../../api/api";
 
 export type mapStateToPropsType = {
     usersPage: usersPage
@@ -23,8 +22,9 @@ export type mapStateToPropsType = {
     followingProgress: Array<number>
 }
 export type mapDispatchToPropsType = {
-    follow: (userId: number) => void
-    setUsers: (users: Array<user>) => void
+    followTC: (userId: number) => void
+    unfollowTC: (userId: number) => void
+    getUsers: (currentPage: number, pageSize: number) => void
     setTotalCount: (totalCount: number) => void
     setCurrentPage: (page: number) => void
     setLoader: (isLoading: boolean) => void
@@ -36,26 +36,18 @@ export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
 class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.setLoader(true)
-        getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.setLoader(false)
-            this.props.setUsers(data.items)
-            this.props.setTotalCount(data.totalCount)
-        })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onClickPage(page: number) {
-        this.props.setLoader(true)
         this.props.setCurrentPage(page)
-        getUsers(page, this.props.pageSize).then(data => {
-            this.props.setLoader(false)
-            this.props.setUsers(data.items)
-        })
+        this.props.getUsers(page, this.props.pageSize)
     }
 
     render() {
         return <Users {...this.props}
-                      follow={this.props.follow}
+                      followTC={this.props.followTC}
+                      unfollowTC={this.props.unfollowTC}
                       onClickPage={(page) => this.onClickPage(page)}
         />
     }
@@ -73,4 +65,4 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 }
 
 export default connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
-    {follow, setUsers, setTotalCount, setCurrentPage, setLoader, setFollowingProgress})(UsersContainer as any)
+    {followTC, unfollowTC, getUsers, setTotalCount, setCurrentPage, setLoader, setFollowingProgress})(UsersContainer as any)
