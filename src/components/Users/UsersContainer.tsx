@@ -1,17 +1,19 @@
 import {connect} from "react-redux";
 import {
     followTC,
-    unfollowTC,
     getUsers,
     setCurrentPage,
     setFollowingProgress,
     setLoader,
     setTotalCount,
+    unfollowTC,
     usersPage
 } from "../../redux/usersReducer";
 import {AppStateType} from "../../redux/store";
 import React from "react";
 import {Users} from "./Users";
+import {compose} from "redux";
+import withAuthRedirect from "../HOC/withAuthRedirect";
 
 export type mapStateToPropsType = {
     usersPage: usersPage
@@ -64,5 +66,8 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     }
 }
 
-export default connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
-    {followTC, unfollowTC, getUsers, setTotalCount, setCurrentPage, setLoader, setFollowingProgress})(UsersContainer as any)
+export default compose (
+    withAuthRedirect,
+    connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
+        {followTC, unfollowTC, getUsers, setTotalCount, setCurrentPage, setLoader, setFollowingProgress})
+)(UsersContainer)

@@ -12,6 +12,7 @@ export type AuthType = {
     messages: Array<string | null>
     fieldsErrors: Array<string | null>
     resultCode: number | null
+    isAuth: boolean
 }
 
 const authInitialStore: AuthType = {
@@ -23,24 +24,26 @@ const authInitialStore: AuthType = {
     messages: [null],
     fieldsErrors: [null],
     resultCode: null,
+    isAuth: false,
 }
 
 export type authStoreType = typeof authInitialStore
 export type setAuthDataActionType = ReturnType<typeof setAuthData>
 
 export const setAuthData = (authData: AuthType) => ({type: SET_AUTH, authData}) as const
-export const setAuthDataTC =()=> (dispatch: Dispatch)=>{
+export const setAuthDataTC = () => (dispatch: Dispatch) => {
     authApi.authMe().then(data => {
-        dispatch(setAuthData(data))
+        if (!data.resultCode) {
+            dispatch(setAuthData(data))
+        }
     })
 }
-
 
 
 const authReducer = (state = authInitialStore, action: setAuthDataActionType): authStoreType => {
     switch (action.type) {
         case SET_AUTH:
-            return {...state, ...action.authData}
+            return {...state, ...action.authData, isAuth: true}
         default:
             return state
     }
