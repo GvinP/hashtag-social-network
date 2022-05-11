@@ -5,6 +5,7 @@ import {usersApi} from "../api/api";
 const ADD_POST = "ADD-POST"
 const UPDATE_POST = "UPDATE-POST"
 const SET_PROFILE = "SET-PROFILE"
+const SET_STATUS = "SET-STATUS"
 
 type postData = {
     message: string, likes: number
@@ -33,6 +34,7 @@ export type ProfileType = {
 
 const profileInitialStore = {
     profile: {} as ProfileType,
+    status: '',
     postsData: [
         {message: "First Post", likes: 11},
         {message: "Second Post", likes: 22},
@@ -53,10 +55,15 @@ export type setProfileActionType = {
     type: "SET-PROFILE"
     profile: ProfileType
 }
+export type setStatusActionType = {
+    type: "SET-STATUS"
+    status: string
+}
 
 export const addPost = () => ({type: ADD_POST})
 export const updatePost = (text: string) => ({type: UPDATE_POST, text: text})
 export const setUserProfile = (profile: ProfileType) => ({type: SET_PROFILE, profile})
+export const setUserStatus = (status: string) => ({type: SET_STATUS, status})
 
 export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
     usersApi.getUserProfile(userId).then(data => {
@@ -64,9 +71,22 @@ export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
     })
 }
 
+export const getUserStatus = (userId: number) => (dispatch: Dispatch) => {
+    usersApi.getUserStatus(userId).then(data => {
+        dispatch(setUserStatus(data.data))
+    })
+}
+export const updateUserStatus = (status: string) => (dispatch: Dispatch) => {
+    usersApi.updateUserStatus(status).then(response => {
+        debugger
+        if (response.data.resultCode === 0)
+        dispatch(setUserStatus(status))
+    })
+}
+
 
 const profileReducer = (state = profileInitialStore, action: allActionsType): profileStoreType => {
-
+debugger
     switch (action.type) {
         case ADD_POST:
             let newPost = {
@@ -80,7 +100,9 @@ const profileReducer = (state = profileInitialStore, action: allActionsType): pr
             }
             return state
         case SET_PROFILE:
-            return {...state, profile: action.profile}
+            return {...state, profile: {...action.profile}}
+        case SET_STATUS:
+            return {...state, status: action.status}
         default:
             return state
     }

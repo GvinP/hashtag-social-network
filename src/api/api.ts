@@ -17,6 +17,12 @@ export const usersApi = {
         return instance.get(`profile/` + userId)
             .then(response => response.data)
     },
+    getUserStatus(userId: number) {
+        return instance.get(`profile/status/` + userId)
+    },
+    updateUserStatus(status: string) {
+        return instance.put(`profile/status/`, {status})
+    },
     follow(id: number) {
         return instance.post(`follow/${id}`)
             .then(response => response.data)

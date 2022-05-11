@@ -6,14 +6,14 @@ import {
     setUsersActionType
 } from "./usersReducer";
 import {addMessageActionType, updateMessageActionType} from "./dialogReducer";
-import {addPostActionType, setProfileActionType, updatePostActionType} from "./profileReducer";
+import {addPostActionType, setProfileActionType, setStatusActionType, updatePostActionType} from "./profileReducer";
 
 export type allActionsType = followActionType | setUsersActionType
     | addMessageActionType | updateMessageActionType
     | addPostActionType | updatePostActionType
     | setTotalCountActionType | setCurrentPageActionType
     | setLoaderActionType | setProfileActionType
-    | setFollowingProgressActionType
+    | setFollowingProgressActionType | setStatusActionType
 
 
 //  type dialogData = {
