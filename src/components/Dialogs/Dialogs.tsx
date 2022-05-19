@@ -3,6 +3,7 @@ import Message from "./DialogItem/Messagge/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import s from "./Dialogs.module.css";
 import {dialogsPropsType} from "./DialogsContainer";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
 const Dialogs = (props: dialogsPropsType) => {
 
@@ -16,10 +17,20 @@ const Dialogs = (props: dialogsPropsType) => {
             </div>
             <div>
                 {messages}
-                <textarea onChange={props.updateMessage} value={props.dialogPage.newMessage}></textarea>
-                <button onClick={props.newMessage}>New message</button>
+                <AddMessageFormRedux/>
             </div>
         </div>
     );
 }
+
+export const AddMessageForm: React.FC<InjectedFormProps> = () => {
+    return <form>
+        <Field component={'textarea'} name={'newMessageText'} placeholder={'Enter your message'}/>
+        <button>Add post</button>
+    </form>
+}
+
+const AddMessageFormRedux = reduxForm({
+    form: 'newPostText'
+})(AddMessageForm)
 export default Dialogs;

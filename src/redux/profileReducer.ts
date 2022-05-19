@@ -78,7 +78,6 @@ export const getUserStatus = (userId: number) => (dispatch: Dispatch) => {
 }
 export const updateUserStatus = (status: string) => (dispatch: Dispatch) => {
     usersApi.updateUserStatus(status).then(response => {
-        debugger
         if (response.data.resultCode === 0)
         dispatch(setUserStatus(status))
     })
@@ -86,7 +85,6 @@ export const updateUserStatus = (status: string) => (dispatch: Dispatch) => {
 
 
 const profileReducer = (state = profileInitialStore, action: allActionsType): profileStoreType => {
-debugger
     switch (action.type) {
         case ADD_POST:
             let newPost = {
