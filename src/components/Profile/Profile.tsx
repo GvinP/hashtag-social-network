@@ -10,7 +10,7 @@ type UserProfilePropsType = {
 
 
 export const Profile = (props: UserProfilePropsType) => {
-    debugger
+
     return (
         <>
             <img width={'260px'} src={props.profile.photos?.large ? props.profile.photos.large : avatar}/>

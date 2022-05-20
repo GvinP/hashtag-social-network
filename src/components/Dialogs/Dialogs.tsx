@@ -10,6 +10,11 @@ const Dialogs = (props: dialogsPropsType) => {
     const messages = props.dialogPage.messageData.map((message) => <Message key={message.id} textMessage={message.message}
                                                                          id={message.id}/>)
     const dialogs = props.dialogPage.dialogData.map((dialog) => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
+
+    const addNewMessage = (values: any) => {
+        props.newMessage(values.newMessageText)
+    }
+
     return (
         <div className={s.dialogs}>
             <div>
@@ -17,20 +22,20 @@ const Dialogs = (props: dialogsPropsType) => {
             </div>
             <div>
                 {messages}
-                <AddMessageFormRedux/>
+                <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
         </div>
     );
 }
 
-export const AddMessageForm: React.FC<InjectedFormProps> = () => {
-    return <form>
+export const AddMessageForm: React.FC<InjectedFormProps> = (props) => {
+    return <form onSubmit={props.handleSubmit}>
         <Field component={'textarea'} name={'newMessageText'} placeholder={'Enter your message'}/>
         <button>Add post</button>
     </form>
 }
 
 const AddMessageFormRedux = reduxForm({
-    form: 'newPostText'
+    form: 'newMessageText'
 })(AddMessageForm)
 export default Dialogs;

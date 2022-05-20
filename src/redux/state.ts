@@ -5,12 +5,11 @@ import {
     setTotalCountActionType,
     setUsersActionType
 } from "./usersReducer";
-import {addMessageActionType, updateMessageActionType} from "./dialogReducer";
-import {addPostActionType, setProfileActionType, setStatusActionType, updatePostActionType} from "./profileReducer";
+import {addMessageActionType} from "./dialogReducer";
+import {addPostActionType, setProfileActionType, setStatusActionType} from "./profileReducer";
 
 export type allActionsType = followActionType | setUsersActionType
-    | addMessageActionType | updateMessageActionType
-    | addPostActionType | updatePostActionType
+    | addMessageActionType | addPostActionType
     | setTotalCountActionType | setCurrentPageActionType
     | setLoaderActionType | setProfileActionType
     | setFollowingProgressActionType | setStatusActionType

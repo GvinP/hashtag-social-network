@@ -8,10 +8,13 @@ type FormDataType = {
 }
 
 const Login = () => {
+    const onSubmit = (values: any) => {
+      alert(values.login + values.password + values.rememberMe)
+    }
     return (
         <>
            <div>Login</div>
-            <LoginReduxForm/>
+            <LoginReduxForm onSubmit={onSubmit}/>
         </>
     );
 };
