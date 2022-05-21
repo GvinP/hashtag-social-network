@@ -4,7 +4,7 @@ import {addMessageActionCreator, dialogsInitialStateType} from "../../redux/dial
 import {compose, Dispatch} from "redux";
 import {AppStateType} from "../../redux/store";
 import {withRouter} from "../Profile/withRouter";
-import withAuthRedirect from "../HOC/withAuthRedirect";
+import {withAuthRedirect} from "../HOC/withAuthRedirect";
 
 type mapStateToPropsType = {
     dialogPage: dialogsInitialStateType

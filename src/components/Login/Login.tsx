@@ -1,15 +1,28 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
+import {required} from "../../utils/validators";
+import {Input} from "../common/formsControl/formsControl";
+import {AppStateType} from "../../redux/store";
+import {connect} from "react-redux";
+import {login} from "../../redux/authReducer";
 
 type FormDataType = {
-    login: string
+    email: string
     password: string
     rememberMe: boolean
 }
 
-const Login = () => {
-    const onSubmit = (values: any) => {
-      alert(values.login + values.password + values.rememberMe)
+type MapStatePropsType = {
+    isAuth: boolean
+}
+type MapDispatchPropsType = {
+    login: (email: string, password: string, rememberMe: boolean) => void
+}
+export type LoginPropsType = MapStatePropsType & MapDispatchPropsType
+
+export const Login = (props: LoginPropsType) => {
+    const onSubmit = (values: FormDataType) => {
+        props.login(values.email, values.password, values.rememberMe)
     }
     return (
         <>
@@ -19,20 +32,33 @@ const Login = () => {
     );
 };
 
-export default Login;
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'Login'} name={'login'} component={'input'}/>
+                <Field placeholder={'Login'}
+                       name={'email'}
+                       component={Input}
+                       validate={[required]}
+                />
             </div>
             <div>
-                <Field placeholder={'Password'} name={'password'} component={'input'}/>
+                <Field placeholder={'Password'}
+                       name={'password'}
+                       component={Input}
+                       validate={[required]}
+                />
             </div>
             <div>
-                <Field type={'checkbox'} name={'rememberMe'} component={'input'}/>
+                <Field type={'checkbox'}
+                       name={'rememberMe'}
+                       component={Input}
+                />
             </div>
+            {props.error && <div >
+                {props.error}
+                </div>}
             <button>Login</button>
         </form>
     );
@@ -42,5 +68,10 @@ const LoginReduxForm = reduxForm<FormDataType>({
     form: 'login'
 })(LoginForm)
 
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
+    isAuth: state.authData.isAuth
+})
+
+export default connect(mapStateToProps, {login})(Login)
 
 

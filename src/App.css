@@ -1,5 +1,5 @@
 .app-wrapper {
-    width: 1200px;
+    width: 100%;
     margin: 0 auto;
     display: grid;
     grid-template-areas: "head head"
