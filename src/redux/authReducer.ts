@@ -32,7 +32,7 @@ export type setAuthDataActionType = ReturnType<typeof setAuthData>
 
 export const setAuthData = (authData: AuthType, isAuth: boolean) => ({type: SET_AUTH, authData, isAuth}) as const
 export const setAuthDataTC = () => (dispatch: Dispatch) => {
-    authApi.authMe().then(data => {
+    return authApi.authMe().then(data => {
         if (!data.resultCode) {
             dispatch(setAuthData(data, true))
         }

@@ -10,10 +10,21 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import UsersContainer from "./components/Users/UsersContainer";
+import {AppStateType} from "./redux/store";
+import {connect, ConnectedProps} from "react-redux";
+import {initializedApp} from "./redux/appReducer";
+import {Loader} from "./components/common/loader/Loader";
 
 
-const App = () => {
+class App extends React.Component<ConnectedType> {
+    componentDidMount() {
+        this.props.initializedApp()
+    }
 
+    render() {
+        if (!this.props.initialized) {
+            return <Loader/>
+        }
         return (
             <div className="app-wrapper">
                 <HeaderContainer/>
@@ -30,7 +41,14 @@ const App = () => {
                     </Routes>
                 </div>
             </div>
-    );
+        );
+    }
 }
-
-export default App;
+const mapStateToProps = (state: AppStateType) => {
+    return {
+        initialized: state.app.initialized,
+    }
+}
+let connector = connect(mapStateToProps, {initializedApp})
+type ConnectedType = ConnectedProps<typeof connector>
+export default connector(App as any)

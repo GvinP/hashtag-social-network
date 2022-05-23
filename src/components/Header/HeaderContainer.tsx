@@ -16,9 +16,9 @@ export type mapDispatchToPropsType = {
 export type AuthDataPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 class HeaderContainer extends React.Component<AuthDataPropsType> {
-    componentDidMount() {
-        this.props.setAuthDataTC()
-    }
+    // componentDidMount() {
+    //     this.props.setAuthDataTC()
+    // }
 
     render() {
         return <Header {...this.props}/>

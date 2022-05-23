@@ -5,6 +5,7 @@ import {Input} from "../common/formsControl/formsControl";
 import {AppStateType} from "../../redux/store";
 import {connect} from "react-redux";
 import {login} from "../../redux/authReducer";
+import { Navigate } from 'react-router-dom';
 
 type FormDataType = {
     email: string
@@ -23,6 +24,9 @@ export type LoginPropsType = MapStatePropsType & MapDispatchPropsType
 export const Login = (props: LoginPropsType) => {
     const onSubmit = (values: FormDataType) => {
         props.login(values.email, values.password, values.rememberMe)
+    }
+    if (props.isAuth) {
+        return <Navigate to={'/profile'}/>
     }
     return (
         <>
