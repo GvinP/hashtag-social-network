@@ -9,9 +9,6 @@ export type AuthType = {
         login: string | null
         email: string | null
     }
-    // messages: Array<string | null>
-    // fieldsErrors: Array<string | null>
-    // resultCode: number | null
     isAuth: boolean
 }
 
@@ -21,9 +18,6 @@ const authInitialStore: AuthType = {
         login: null,
         email: null,
     },
-    // messages: [null],
-    // fieldsErrors: [null],
-    // resultCode: null,
     isAuth: false,
 }
 

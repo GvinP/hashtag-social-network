@@ -7,12 +7,13 @@ import {
 } from "./usersReducer";
 import {addMessageActionType} from "./dialogReducer";
 import {addPostActionType, setProfileActionType, setStatusActionType} from "./profileReducer";
+import {setAuthDataActionType} from "./authReducer";
 
 export type allActionsType = followActionType | setUsersActionType
     | addMessageActionType | addPostActionType
     | setTotalCountActionType | setCurrentPageActionType
     | setLoaderActionType | setProfileActionType
-    | setFollowingProgressActionType | setStatusActionType
+    | setFollowingProgressActionType | setStatusActionType | setAuthDataActionType
 
 
 //  type dialogData = {

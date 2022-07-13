@@ -70,4 +70,4 @@ export default compose<any> (
     withAuthRedirect,
     connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
         {followTC, unfollowTC, getUsers, setTotalCount, setCurrentPage, setLoader, setFollowingProgress})
-)(UsersContainer)
+)(UsersContainer as any)

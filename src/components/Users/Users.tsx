@@ -5,6 +5,7 @@ import {Loader} from "../common/loader/Loader";
 import {NavLink} from "react-router-dom";
 
 
+
 type UsersPropsType = {
     usersPage: usersPage
     followTC: (userId: number) => void
@@ -15,19 +16,18 @@ type UsersPropsType = {
 
 export const Users = (props: UsersPropsType) => {
     let pagesCount = Math.ceil(props.usersPage.totalCount / props.usersPage.pageSize)
-    let pages = []
+    let pages: Array<number|string> = []
 
     for (let i = 1; i < 10; i++) {
         pages.push(i)
     }
-    pages.push(pagesCount - 2)
-    pages.push(pagesCount - 1)
+    pages.push('...')
     pages.push(pagesCount)
     return (
-        <div>
+        <>
             {props.usersPage.isLoading ? <Loader/> : null}
             {pages.map(el => <span onClick={() => {
-                props.onClickPage(el)
+                props.onClickPage(+el)
             }} style={el === props.usersPage.currentPage ? {
                 fontWeight: 'bold',
                 marginRight: '10px'
@@ -54,6 +54,6 @@ export const Users = (props: UsersPropsType) => {
                     </div>
                 })
             }
-        </div>
+        </>
     )
 }

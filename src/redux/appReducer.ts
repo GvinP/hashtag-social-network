@@ -25,12 +25,7 @@ export const initializedAC = () => {
 }
 
 export const initializedApp = () => (dispatch: Dispatch) => {
-    debugger
     //@ts-ignore
-   let promise = dispatch(setAuthDataTC())
-promise.then(()=>{
+    dispatch(setAuthDataTC())
     dispatch(initializedAC())
-})
-
-
 }
