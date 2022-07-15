@@ -32,11 +32,11 @@ class App extends React.Component<ConnectedType> {
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path="/profile/*" element={<ProfilePage/>}/>
-                        <Route path="/Dialogs/*" element={<DialogsContainer/>}/>
-                        <Route path="/Users" element={<UsersContainer/>}/>
-                        <Route path="/News" element={<News/>}/>
-                        <Route path="/Music" element={<Music/>}/>
-                        <Route path="/Settings" element={<Settings/>}/>
+                        <Route path="/dialogs/*" element={<DialogsContainer/>}/>
+                        <Route path="/users" element={<UsersContainer/>}/>
+                        <Route path="/news" element={<News/>}/>
+                        <Route path="/music" element={<Music/>}/>
+                        <Route path="/settings" element={<Settings/>}/>
                         <Route path="/login" element={<Login/>}/>
                     </Routes>
                 </div>
