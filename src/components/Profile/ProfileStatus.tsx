@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import {useDispatch} from "react-redux";
 import {updateUserStatus} from "../../redux/profileReducer";
+import s from "./Profile.module.css"
 
 type ProfileStatusPropsType = {
     status: string
@@ -21,7 +22,7 @@ const ProfileStatus = (props: ProfileStatusPropsType) => {
     }
 
     return (
-        <>
+        <div className={s.profileStatus}>
             {editMode
                     ? <input value={status} onBlur={updateStatus} onChange={changeStatus}/>
                     : <span
@@ -29,7 +30,7 @@ const ProfileStatus = (props: ProfileStatusPropsType) => {
                     {props.status ? props.status : 'No status'}
             </span>
             }
-        </>
+        </div>
     );
 };
 

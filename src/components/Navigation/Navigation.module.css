@@ -1,17 +1,22 @@
 .navigation {
     grid-area: navigation;
-    background-color: blueviolet;
+    /*background-color: blueviolet;*/
     padding: 20px;
 }
 
 a {
     text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 44px;
+    text-transform: uppercase;
 }
 
 .link {
-    color: white;
+    color: #333333;
+
 }
 
 .active {
-    color: darkgoldenrod;
+    color: #6B92F6;
 }

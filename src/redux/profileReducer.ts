@@ -32,7 +32,22 @@ export type ProfileType = {
 }
 
 const profileInitialStore = {
-    profile: {} as ProfileType,
+    contacts: {
+        facebook: '',
+        website: '',
+        vk: '',
+        twitter: '',
+        instagram: '',
+        youtube: '',
+        github: '',
+        mainLink: ''
+    },
+    profile: {
+        photos: {
+            small: '',
+            large: ''
+        }
+    } as ProfileType,
     status: '',
     postsData: [
         {message: "First Post", likes: 11},

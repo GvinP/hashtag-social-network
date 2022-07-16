@@ -1,11 +1,10 @@
 import React from "react";
-import s from "./Profile.module.css"
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import ProfileContainer from "./ProfileContainer";
 
 const ProfilePage = () => {
     return (
-        <div className={s.content}>
+        <div>
             <ProfileContainer/>
             <MyPostsContainer/>
         </div>

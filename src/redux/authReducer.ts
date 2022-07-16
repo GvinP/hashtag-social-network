@@ -34,7 +34,6 @@ export const setAuthDataTC = () => (dispatch: Dispatch) => {
 }
 export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
     authApi.login(email, password, rememberMe).then(data => {
-        debugger
         if (!data.resultCode) {
             dispatch(setAuthData(data, true))
         }
@@ -42,9 +41,8 @@ export const login = (email: string, password: string, rememberMe: boolean) => (
 }
 export const logout = () => (dispatch: Dispatch) => {
     authApi.logout().then(data => {
-
         if (!data.resultCode) {
-            dispatch(setAuthData({data:{id: null, login: null, email: null}, isAuth: false}, false))
+            dispatch(setAuthData({data: {id: null, login: null, email: null}, isAuth: false}, false))
         }
     })
 }
