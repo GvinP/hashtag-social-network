@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Navigation from "./components/Navigation/Navigation";
 import ProfilePage from "./components/Profile/ProfilePage";
-import {Route, Routes} from 'react-router-dom';
+import {Navigate, Route, Routes} from 'react-router-dom';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -31,6 +31,7 @@ class App extends React.Component<ConnectedType> {
                 <Navigation/>
                 <div className="app-wrapper-content">
                     <Routes>
+                        <Route path="/" element={<Navigate to={'profile'}/>}/>
                         <Route path="/profile/*" element={<ProfilePage/>}/>
                         <Route path="/dialogs/*" element={<DialogsContainer/>}/>
                         <Route path="/users" element={<UsersContainer/>}/>

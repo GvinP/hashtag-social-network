@@ -50,9 +50,7 @@ const profileInitialStore = {
     } as ProfileType,
     status: '',
     postsData: [
-        {message: "First Post", likes: 11},
-        {message: "Second Post", likes: 22},
-        {message: "Third Post", likes: 33}
+        {message: "Hey dude! How's it going? 👻", likes: 11},
     ] as Array<postData>
 }
 export type profileStoreType = typeof profileInitialStore

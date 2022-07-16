@@ -2,3 +2,21 @@
     grid-column: 2/3;
     grid-row: 2/3;
 }
+
+.title {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 24px;
+    text-transform: uppercase;
+}
+
+.textArea {
+    box-sizing: border-box;
+    width: 605px;
+    height: 116px;
+    border: 1px solid #ECEEF4;
+    border-radius: 7px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+

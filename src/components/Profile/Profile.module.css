@@ -1,6 +1,6 @@
 .profileContainer {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .profileAvatar {
@@ -9,6 +9,7 @@
     justify-content: space-between;
     min-height: 350px;
     margin-bottom: 46px;
+    margin-left: 40px;
 }
 
 .userInfoContainer {
@@ -53,6 +54,7 @@
 
 .deleteButton {
     background-color: #954CF6;
+    color: #ffffff;
 }
 
 .profileStatus {
