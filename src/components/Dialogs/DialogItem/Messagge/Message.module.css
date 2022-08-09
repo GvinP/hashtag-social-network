@@ -1,8 +1,27 @@
-
-.messagesList {
-
+.messagesItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    word-break: break-all;
+    padding: 0 20px;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    background-color: #d94167;
+    width: 250px;
+    min-height: 53px;
+    background-color: #F7F7F7;
+    border-radius: 7px 7px 7px 0;
+    margin-bottom: 10px;
 }
 
-.messagesItem {
-    margin-top: 5px;
+.messagesItem:after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    left: -15px;
+    top: 38px;
+    background: radial-gradient(circle at 0 0, transparent 15px, #F7F7F7 0);
 }

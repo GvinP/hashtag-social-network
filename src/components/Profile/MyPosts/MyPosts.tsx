@@ -24,7 +24,7 @@ const MyPosts = (props: myPostsPropsType) => {
 export const MyPostForm: React.FC<InjectedFormProps> = (props) => {
     return <form onSubmit={props.handleSubmit}>
         <Field component={'textarea'} name={'newPostText'} placeholder={'Enter your post here'} className={s.textArea}/>
-        <button className={`${style.button}`}>Add post</button>
+        <button className={style.button}>Add post</button>
     </form>
 }
 

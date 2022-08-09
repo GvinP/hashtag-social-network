@@ -20,7 +20,7 @@ const Dialogs = (props: dialogsPropsType) => {
             <div>
                 {dialogs}
             </div>
-            <div>
+            <div className={s.messages}>
                 {messages}
                 <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
@@ -29,9 +29,9 @@ const Dialogs = (props: dialogsPropsType) => {
 }
 
 export const AddMessageForm: React.FC<InjectedFormProps> = (props) => {
-    return <form onSubmit={props.handleSubmit}>
-        <Field component={'textarea'} name={'newMessageText'} placeholder={'Enter your message'}/>
-        <button>Add post</button>
+    return <form onSubmit={props.handleSubmit} className={s.form}>
+        <Field component={'textarea'} name={'newMessageText'} placeholder={'Enter your message'} className={s.input}/>
+        <button className={s.button}>Add post</button>
     </form>
 }
 

@@ -6,6 +6,7 @@ import {AppStateType} from "../../redux/store";
 import {connect} from "react-redux";
 import {login} from "../../redux/authReducer";
 import { Navigate } from 'react-router-dom';
+import styles from './Login.module.css'
 
 type FormDataType = {
     email: string
@@ -29,10 +30,10 @@ export const Login = (props: LoginPropsType) => {
         return <Navigate to={'/profile'}/>
     }
     return (
-        <>
-           <div>Login</div>
+        <div className={styles.container}>
+           <div className={styles.title}>Login</div>
             <LoginReduxForm onSubmit={onSubmit}/>
-        </>
+        </div>
     );
 };
 
@@ -45,6 +46,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                        name={'email'}
                        component={Input}
                        validate={[required]}
+                       className={styles.input}
                 />
             </div>
             <div>
@@ -52,18 +54,21 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                        name={'password'}
                        component={Input}
                        validate={[required]}
+                       className={styles.input}
                 />
             </div>
-            <div>
+            <div className={styles.checkboxContainer}>
                 <Field type={'checkbox'}
                        name={'rememberMe'}
                        component={Input}
+                       className={styles.checkbox}
                 />
+                Remember me
             </div>
             {props.error && <div >
                 {props.error}
                 </div>}
-            <button>Login</button>
+            <button className={styles.button}>Login</button>
         </form>
     );
 };

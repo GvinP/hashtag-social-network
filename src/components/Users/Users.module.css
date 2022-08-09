@@ -1,0 +1,60 @@
+.userPage {
+    margin-top: 35px;
+    margin-left: 50px;
+}
+
+.pagination {
+    
+    margin-bottom: 20px;
+}
+
+.page {
+background-color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.active {
+    color: #954CF6;
+    font-weight: bold;
+    cursor: default;
+}
+
+.disabled {
+    cursor: default;
+}
+
+.userContainer {
+  display: flex;
+}
+
+.userInfo {
+  width: 260px;
+  padding-left: 30px;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.userName {
+  font-size: 12px;
+  font-weight: 600;
+}
+.userStatus {
+  font-size: 8px;
+}
+.button {
+  align-self: center;
+  padding: 0;
+  width: 60px;
+  height: 24px;
+  border: 1px solid #6b92f6;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 5px;
+  background-color: inherit;
+  cursor: pointer;
+}
